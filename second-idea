@@ -1,0 +1,33 @@
+PITCH:
+Unscrambler: A free game app for learning about user events.
+
+Users: similar to idea 1. login to track score and get a copy of logs.
+
+USER STORIES:
+    as a user I can:
+
+        SEND MY DATA TO THE BACKEND (Location, IP, EVENTS[clicks, hovers, etc], browser, device identification, etc.)
+
+        
+        receive targeted ads (stretch)
+
+        play a game where the point of the game is to try to type into the form the correct word. record events.
+
+MVP conditions:
+
+user can log in and play a game that fetches a word from a dictionary api or some other word source, scrambles it and allows the user to enter the word in the bar and tell them if they guessed the correct word or not. records user events and saves them to a log file. 
+
+
+NEW TECH:
+    dictionary API
+    study randomizer algorithms
+    Fetching Ads
+    logging user data (probably using crazy cookies)
+    logging events
+
+
+event listener that generates a timestamp, adds to a sequence of events array.
+
+
+
+

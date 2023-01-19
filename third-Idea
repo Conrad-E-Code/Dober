@@ -1,0 +1,17 @@
+warehouse/ inventory management e commerce site
+
+As a user I can:
+
+view the inventory
+buy something
+get it shipped to me
+shopping cart like burger shop
+
+MODELS:
+
+Item
+
+NEW TECH
+payment API
+
+ads

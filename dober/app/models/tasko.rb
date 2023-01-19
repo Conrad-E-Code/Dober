@@ -1,0 +1,2 @@
+class Tasko < ApplicationRecord
+end

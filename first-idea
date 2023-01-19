@@ -1,0 +1,225 @@
+PITCH: 
+    Air Lawn and garden
+    Air shovel/Plow
+    Air Heavy & Home equipment
+    Air Red & Neck
+    Tracturo
+    Air Implement
+    ineedamachine.com
+    Earthmovers Online
+    Lawnnie
+    Do-ber
+Toolshare
+    
+
+(connnect with a local users with HUGE equipment at their disposal.)
+From limosines to lawnmowers to airplanes
+
+ Full stack App where users can put their underutilized equipment up for rent by the day or by the hour. Users can also post themselves as equipment with operator with an hourly rate, allowing them to earn money doing landscaping/snow removal/equipment tasks in general.)
+
+
+
+USER STORIES
+    As a user I can:
+
+    EVERYONE:
+
+        SEND MY DATA TO THE BACKEND (Location, IP, EVENTS[clicks, hovers, etc], browser, device identification, etc.) 
+
+        receive targeted ads (stretch)
+
+        signup with email confirmation,
+        update password (maybe with email?, forgot password type deal)
+        log in
+
+        SELECT A TASK (lawn care, snow removal, excavation, hauling, etc.)
+
+        VIEW EQUIPMENT posted for rent/sale by other users. (location based)(price based/order)(FILTER BY TASK)
+    
+    LOGGED IN:
+
+        book time to borrow equipment. 
+            stretch goal:
+                 no double booking
+        Pay for services: rental, deposit, etc using credit card. (front-end mostly)
+        get notified when it's time to pick up /return equipment.
+       
+        see personalized ads. 
+
+        Post my equipment for rent.
+
+END OF USER STORIES
+
+MODELS
+
+    USER model
+        attributes:
+            username, password_digest, email.?, location:us_state(string), maybe a few others (phone number)
+
+        relationships: 
+            has_many equips
+            has_many rentals through epiur
+            has many reviews through rentals
+            has_many :visits, class_name: "Ahoy::Visit"
+
+
+        behaviors: auth, Maybe a location radius search feature between other users and their equipment.
+                def see_equipment_near_me
+                    user = User.find_by(session[:*]) find the user using sessions cookie
+                    find users near me user
+                   people_near_me = User.where location: near_me
+
+
+    Rental Model: maybe add a cart model to see price
+    attributes: checkout:datetime checkin:datetime user_id: equip_id difference between reservation/order
+          t.integer :user_id #belongs to borrower
+      t.integer :equipment_id # belongs to equipment
+      t.integer 
+
+    validation for not creating a new reservation if user and equip id already exist on a matching datetime.
+
+           behaviors: Calculate price hourly to daily conversion using % operator.
+        define hours as difference between check in and check out. 
+        if hours >8 
+        1 day = 8 hours 
+        amount of days = hours /8  
+        remaining_time = hours 
+
+    CATEGORY model
+    attr: name
+
+    has many equips
+
+    behaviors:  category = Category.find_by name:
+                category.equips.where location:near_me
+
+    EQUIP(s) MODEL
+          t.integer :user_id
+      t.string :name
+      t.string :coordinates
+
+        attributes: name, location deposit_amount, location, daily_rate, hourly_rate:float, tasks:could evolve into a model, delivery_fee:(large equipment only), includes_operator?:)
+        is_heavy_equipment?:boolean
+        relationships
+        belongs_to: user
+        has_many: reservations
+        bleongs_to: category
+
+ 
+    REVIEW MODEL
+         attr:
+            BODY:TEXT
+            RATING:INTEGER
+        
+        relationships:
+        belongs_to: rental
+        belongs_to user
+           
+
+Any models related to email and location / tracking im unaware I need as of yet.
+
+
+NEW TECH:
+
+location/ map API
+
+email/text communication
+
+
+Fetching Ads/ Ad service
+
+stripe API
+
+upload pictures
+
+logging user data (probably using crazy cookies) and saving them in a log on the backend. (Ahoy gem)
+
+
+
+
+
+MVP CONDITONS
+User can see available equipment for rent.
+user can login & rent equipment.
+    users are charged at correct rate.
+        late fees like a library.
+        poster can review borrower, vice versa
+no double booking
+
+stretch goals: 
+compare prices with traditional equipment rental sites
+sort reviews by borrower/owner
+add images to profiles
+price calucalort by the minute?
+
+
+
+
+Set a location model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    OTHER IDEAS:
+                        BOOZE Cruise
+                        same idea but
+                        Boats in water areas with captain / crew
+
+
+
+
+
+        customer side:
+        put name on a list requesting lawn mowing service
+
+
+
+
+                                        SERVICE MODEL
+
+
+
+
+
+                                        user stories:
+
+                                        as a user I can:
+                                        EVERYONE:
+                                        signup with email confirmation,
+                                        update password
+                                        log in
+
+                                        CUSTOMER:
+
+                                        post services I need performed
+                                        rate and review past completed services
+
+                                        PROVIDER:
+                                        View requests
+                                        accept requests
+                                        mark requests as complete
