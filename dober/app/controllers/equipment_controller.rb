@@ -18,17 +18,20 @@ class EquipmentController < ApplicationController
     end
 
     def index
-
         user = get_user
-
         equipment = Equipment.where user_id: user.id
         render json: equipment, status: :ok
+    end
+
+    def show 
+        equip = Equipment.find params[:id]
+        render json: equip, status: :ok
     end
 
 
 private
     def equip_params
-        params.permit :name, :model, :year, :description, :hourly_rate
+        params.permit :name, :model, :year, :description, :hourly_rate, :equip_type
     end
 
     def get_user

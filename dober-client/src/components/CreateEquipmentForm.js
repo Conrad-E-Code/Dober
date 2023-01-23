@@ -8,6 +8,7 @@ const [newYear, setNewYear] = useState("")
 const [newDescription, setNewDescription] = useState("")
 const [newHourly, setNewHourly] = useState("")
 const [newCat, setNewCat] = useState("")
+const [newType, setNewType] = useState("")
 const [errors, setErrors] = useState([])
 
     function handleNewEquipment(e) {
@@ -19,7 +20,8 @@ const [errors, setErrors] = useState([])
             "year" : newYear,
             "description": newDescription,
             "hourly_rate":newHourly,
-            "category" :newCat
+            "category" :newCat,
+            "type" :newType
         }
         const configObj = {
             method: "POST",
@@ -37,6 +39,7 @@ const [errors, setErrors] = useState([])
         })
     }
     let date =  new Date().getFullYear()
+    // Need to promote cat state and render these from same cat state as CategoryPage
     const categories = ["CHOOSE A CATEGORY","EVERYTHING ELSE","GARDEN & LANSCAPING","SNOW REMOVAL","TRAILER, TOWING & LOGISTICS","FARMING/AGRICULTURE","CONSTRUCTION & HEAVY","GENERATORS","HOME"]
     const mappedCats = categories.map((cat) => {
         return(
@@ -62,6 +65,11 @@ const [errors, setErrors] = useState([])
                 <label> Equipment Model:
                 <input type="text" placeholder="Model"
                 onChange={(e) => {setNewModel(e.target.value)}}></input>
+                </label>
+                <br/>
+                <label> Equipment Type: "Bulldozer, Snowblower, Flatbed Trailer"
+                <input type="text" placeholder="Enter Equipment Type"
+                onChange={(e) => {setNewType(e.target.value)}}></input>
                 </label>
                 <br/>
                 <label> Equipment Year:

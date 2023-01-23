@@ -9,6 +9,7 @@ import ResetPasswordForm from './components/ResetPasswordForm';
 import Home from './components/Home';
 import CreateEquipmentForm from './components/CreateEquipmentForm';
 import CategoryPage from './components/CategoryPage';
+import EquipDetails from './components/EquipDetails';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -47,6 +48,8 @@ function App() {
          path="/forgot"></Route>
          <Route element={<ResetPasswordForm navigate={navigate} />}
          path="/reset"></Route>
+         <Route element={ user ? <EquipDetails /> :<LoginForm /> }
+         path="/equipment/:id"></Route>
          <Route element={<CreateEquipmentForm navigate={navigate} />}
          path="/equipment/new"></Route>
          <Route element={<CategoryPage navigate={navigate} />}
