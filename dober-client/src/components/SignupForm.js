@@ -5,6 +5,12 @@ function SignupForm({navigate}) {
     const [newUser, setNewUser] = useState("")
     const [newPass, setNewPass] = useState("")
     const [newConfirm, setNewConfirm] =useState("")
+    const [newEmail, setNewEmail] =useState("")
+    const [newCoords, setNewCoords] =useState("")
+    const [newPhone, setNewPhone] =useState("")
+    // const [new, setNew] =useState("")
+
+    
     const [errors, setErrors] = useState([]) 
 
     function handleSignUp(e) {
@@ -12,6 +18,9 @@ function SignupForm({navigate}) {
         const signUpObj = {
             username: newUser,
             password: newPass,
+            email: newEmail,
+            coordinates: newCoords,
+            phone_number: newPhone,
             password_confirmation: newConfirm
         }
         const signUpConfigObj= {
@@ -49,10 +58,29 @@ function SignupForm({navigate}) {
                  placeholder="Confirm Password"
                   type="password" onChange={(e) => setNewConfirm(e.target.value)}></input>Confirm Password</label>
                 <br/>
+                <label className="form-input">Email
+                    <input type="text" placeholder="email"
+                    onChange={(e) => setNewEmail(e.target.value)}>
+                    </input>
+                </label>
+                <br/>
+                <label className="form-input">Coordinates
+                    <input type="text" placeholder="coordinates"
+                    onChange={(e) => setNewCoords(e.target.value)}>
+                    </input>
+                </label>      
+                <br/>
+                <label className="form-input">Phone Number
+                    <input type="text" placeholder="phone-number"
+                    onChange={(e) => setNewPhone(e.target.value)}>
+                    </input>
+                </label>
+                <br/>
                 {errors.map((err) => (
                     <p style={{color: "red", fontWeight: "bold" }}
                     key={err}>{err}</p>
                 ))}
+                <br/>
                  <button type="submit">Create Account!</button>
             </form>
         </div>

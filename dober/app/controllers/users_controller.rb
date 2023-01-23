@@ -3,7 +3,11 @@ class UsersController < ApplicationController
         user =
             User.create username: params[:username],
                                     password: params[:password],
-                                    password_confirmation: params[:password_confirmation]
+                                    password_confirmation: params[:password_confirmation],
+                                    email: params[:email],
+                                    coordinates: params[:coordinates],
+                                    phone_number: params[:phone_number]
+
         if user.valid?
             session[:user_id] = user.id
             render json: user, status: :created

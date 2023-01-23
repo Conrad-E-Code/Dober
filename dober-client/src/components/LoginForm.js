@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function LoginForm({ setUser}) {
     //need states for current user and password
@@ -30,14 +30,14 @@ function LoginForm({ setUser}) {
         }
         //method: POST
         fetch("/login", configObj)
-            .then(r => {
-                if (r.ok) {
-                    r.json().then((user) => setUser(user))
-                    navigate("/menu")
-                } else {
-                    r.json().then((err) => setErrors(err["errors"]))
-                }
-            })
+        .then(r => {
+            if (r.ok) {
+                r.json().then((user) => setUser(user))
+                navigate("/")
+            } else {
+                r.json().then((err) => setErrors(err["errors"]))
+            }
+        })
     }
 
 
@@ -55,10 +55,12 @@ function LoginForm({ setUser}) {
                 <br />
             </form>
                 <button onClick={() => navigate("/signup")}>Signup</button>
-            {errors.map((err) => (
+       {errors?      errors.map((err) => (
                 <p style={{color: "red", fontWeight: "bold" }}
                 key={err}>{err}</p>
-            ))}
+            )): null}
+            <br />
+            <Link to="/forgot">Forgot Password?</Link>
         </div>
     )
 }

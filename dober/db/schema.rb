@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_073039) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_19_181928) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_categories", force: :cascade do |t|
+    t.integer "available_category_id"
+    t.integer "equipment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "available_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_073039) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
   end
 
 end
