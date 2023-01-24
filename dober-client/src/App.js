@@ -10,6 +10,8 @@ import Home from './components/Home';
 import CreateEquipmentForm from './components/CreateEquipmentForm';
 import CategoryPage from './components/CategoryPage';
 import EquipDetails from './components/EquipDetails';
+import NewExchangeCard from './components/NewExchangeCard';
+import OwnerApproveForm from './components/OwnerApproveForm';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -52,6 +54,10 @@ function App() {
          path="/equipment/:id"></Route>
          <Route element={<CreateEquipmentForm navigate={navigate} />}
          path="/equipment/new"></Route>
+         <Route element={<NewExchangeCard user={user}/>}
+         path="/exchange/new/:id"></Route>
+          <Route element={<OwnerApproveForm user={user}/>}
+         path="/exchange/app/:id"></Route>
          <Route element={<CategoryPage navigate={navigate} />}
          path="/categories"></Route>
         

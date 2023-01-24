@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
+
   # root "articles#index"
   get "/categories", to:"categories#index"
   get "/categories/:id", to:"categories#show"
@@ -12,7 +13,10 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-
+  delete "/exchange/:id", to: "exchanges#destroy"
+  post "/exchange/new", to: "exchanges#create"
+  post "exchange/app/:id", to: "exchanges#owner_approve"
+  post "exchange/start/:id", to: "exchanges#start_exc"
   post 'password/forgot', to: 'passwords#forgot'
   post 'password/reset', to: 'passwords#reset'
 end

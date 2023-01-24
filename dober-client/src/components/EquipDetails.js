@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate} from "react-router-dom"
 import { useState, useEffect} from "react"
 
 
 
 function EquipDetails() {
+    let navigate = useNavigate()
     const [errors, setErrors] = useState([])
     const [equip, setEquip] = useState({})
     let {id} = useParams()
@@ -34,15 +35,11 @@ function EquipDetails() {
             <p>Model: {`${equip.model}`}</p>
             <p>Location: {`${equip.coordinates}`}</p>
             <p>Description: {`${equip.description}`}</p>
-
-            
-
-
-
             {errors.map((err) => (
                     <p style={{color: "red", fontWeight: "bold" }}
                     key={err}>{err}</p>
                 ))}
+                <button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>
     TASKS RENDER A LIST OF ASSOCIATED TASKOS!!!!
     TASKOS.where equip_id: params:id
         </div>

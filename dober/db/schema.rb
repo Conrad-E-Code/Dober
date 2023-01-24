@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_23_061312) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_24_011444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_061312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "equip_type"
+    t.boolean "is_available"
   end
 
   create_table "exchanges", force: :cascade do |t|
@@ -45,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_061312) do
     t.integer "equipment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "started_at"
+    t.string "ended_at"
   end
 
   create_table "taskos", force: :cascade do |t|
