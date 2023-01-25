@@ -1,4 +1,14 @@
 class ExchangesController < ApplicationController
+    def index
+        byebug
+        user = User.find session[:user_id]
+        exchanges = Exchange.where(user_id: session[:user_id])
+        owner_exchanges = user.equipment.exchanges
+        render json: {
+            "exchanges": exchanges,
+            "owner_exchanges": owner_exchanges
+        }, status: :ok
+    end
     def create
         borrower = User.find_by id: params[:user_id]
         if borrower != nil
@@ -10,13 +20,13 @@ class ExchangesController < ApplicationController
                     UserMailer.initiate_exchange_email(owner, borrower, equipment, exchange).deliver_now
                     render json:{message: "Sent"}, status: :ok
                 else
-                    render json: {errors: "Owner Not Found"}, status: 404
+                    render json: {errors: ["Owner Not Found"]}, status: 404
                 end
             else 
-                render json: {errors: "Equipment Not Found OR Unavailable, someone else might be using this equipment"}, status: 404
+                render json: {errors: ["Equipment Not Found OR Unavailable, someone else might be using this equipment"]}, status: 404
             end
         else
-            render json: {errors: "Couldn't find valid borrower id"}, status: 404
+            render json: {errors: ["Couldn't find valid borrower id"]}, status: 404
         end
     end
     def owner_approve
@@ -28,11 +38,11 @@ class ExchangesController < ApplicationController
         if owner == user
             exchange.update owner_approved: true
             exchange.equipment.update is_available: false
-            if exchange.owner_approved == true
+            if exchange.owner_approved == true && exchange.started_at == nil
                 UserMailer.owner_approve_email(exchange).deliver_now
                 render json: {message: "Sent Approval to Client"}, status: 202
             else
-                render json: {errors: ["couldn't Approve"]}, status: 401
+                render json: {errors: ["couldn't Approve or exchange is already started."]}, status: 401
             end
         else 
             render json: {errors: ["Couldn't validate owner, is this your equipment?"]}, status: 401
@@ -57,7 +67,10 @@ class ExchangesController < ApplicationController
         exchange = Exchange.find_by id: params[:id]
         user = User.find_by id: session[:user_id]
         if exchange.user == user && exchange.ended_at == nil
-            exchange.update ended_at: d, time_elapsed: (TimeDifference.between(exchange.started_at, exchange.ended_at).in_minutes)
+            time_calc = TimeDifference.between(exchange.started_at, d).in_minutes
+            cost_per_minute = exchange.equipment.hourly_rate / 60
+            cost_calc = cost_per_minute * time_calc
+            exchange.update ended_at: d, time_elapsed: time_calc, cost: cost_calc
             exchange.equipment.update is_available: true
             UserMailer.end_timer_email(exchange).deliver_now
             render json: exchange, status: :ok

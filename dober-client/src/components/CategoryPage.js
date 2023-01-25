@@ -22,19 +22,9 @@ function CategoryPage(props) {
         return(
             <CatCard cat={cat}></CatCard>)
         })
-    
-
-    function renderCategories() {
-        fetch("/categories/1")
-        .then(r => r.json())
-        .then(data => console.log(data))
-    }
-
 
     return(
         <div className="avail-cats">
-            Hello From CategoryPage
-            <button onClick={renderCategories}>TEST</button>
             {renderCats}
             {errors.map((err) => (
                     <p style={{color: "red", fontWeight: "bold" }}

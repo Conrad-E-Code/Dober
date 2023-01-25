@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import {useState} from "react"
 
 function NewExchangeCard({user}) {
+    const [errors, setErrors] = useState([])
     let navigate = useNavigate()
     let {id} = useParams()
 function handleInitiateExchange(e) {
@@ -16,11 +17,15 @@ function handleInitiateExchange(e) {
         body: JSON.stringify(postObj)
     }
     fetch("/exchange/new", configObj)
-    .then(r => r.json())
-    .then(data => {console.log(data)
-    navigate("/")})
+    .then(r => {
+        if (r.ok) {
+            r.json().then((data) => {console.log(data)
+            navigate("/")})
+        } else {
+            r.json().then((err) => setErrors(err["errors"]))
+        }
+    })
 }
-
 
 
     return (
@@ -34,8 +39,15 @@ function handleInitiateExchange(e) {
                     <br />
                     <input className="hidden-input" value={id} name="equipment_id"></input>
                 </label> */}
+                <p className="hidden-input"> SECRET BACKEND STUFF:</p>
+                <a href="https://www.linkedin.com/in/conrad-etherington/" className="hidden-input">Don't Click Here!</a>
+                <p className="hidden-input">USER: {user.id}</p>
                 <button type="submit">Send Request </button>
             </form>
+            {errors?      errors.map((err) => (
+                <p style={{color: "red", fontWeight: "bold" }}
+                key={err}>{err}</p>
+            )): null} 
         </div>
     )
 }

@@ -1,10 +1,15 @@
-<h1> TIMER END </h1>
+<h1> TIMER END for exchange ID: <%=@exchange.id%> </h1>
+
+<h3> Equipment Owner: <%=@exchange.equipment.user.username%></h3>
+<h3> Borrower: <%=@exchange.user.username%>
+
 <p>
     This email is to let you know that your timer has been ENDED!
 </p>
-<p> <%=@exchange.id%></p>
-<p> 
-    If You are the BORROWER of this equipment You can now release the equipment to the OWNER
-    </p>
-    <p>OWNER, the timer is ended. Ensure you have possesion of your equipment in good repair</p>
+<p> Pre-Tax Cost $<%=@exchange.cost.round(2)%></p>
+<p>Exchange Time: <%=@exchange.time_elapsed%></p>
+<p> Please pay the owner to complete your exchange.</p>
+<p>START: <%=@exchange.started_at%></p>
+<p>END: <%=@exchange.ended_at%></p>
+<p>OWNER, the timer is ended. Ensure you have possesion of your equipment in good repair</p>
     

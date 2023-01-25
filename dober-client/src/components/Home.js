@@ -4,7 +4,7 @@ function Home(props) {
     function handleTest() {
         fetch("/equipment")
         .then(r => r.json())
-        .then(console.log())
+        .then(data => console.log(data))
     }
     return(
         <div className="home">
@@ -14,6 +14,7 @@ function Home(props) {
             <br/>
              <Link to="/equipment/new">Post Equipment</Link>
             <br></br>
+            <Link to="/exchanges">Exchanges</Link>
 
         </div>
     )

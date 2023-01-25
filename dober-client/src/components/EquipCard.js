@@ -9,7 +9,16 @@ function EquipCard({equip}) {
     }
     return(
         <div onClick={handleShowEquip} className="equip-card">
-            <h4>{`${equip.name}`}</h4>
+            <ul className="equip-detail-list">
+                <li>
+                    <p className="equip-detail-list-header"
+                    >{`${equip.name}`}
+                    </p>
+                </li>
+                <li>
+                    <p className="equip-detail-list-subheader">{`${equip.equip_type}`}</p>
+                </li>
+            </ul>
         </div>
     )
 }
