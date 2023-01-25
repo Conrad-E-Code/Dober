@@ -1,14 +1,20 @@
 class ExchangesController < ApplicationController
     def index
-        byebug
         user = User.find session[:user_id]
-        exchanges = Exchange.where(user_id: session[:user_id])
-        owner_exchanges = user.equipment.exchanges
-        render json: {
-            "exchanges": exchanges,
-            "owner_exchanges": owner_exchanges
-        }, status: :ok
+        arr_out = []
+        exchanges = Exchange.where user_id: user.id
+        arr_out << {exchanges: exchanges}
+        arr_out << {owner_exchanges: user.exchanges}
+        render json: arr_out, status: :ok
     end
+            # WHAT NOT TO DO
+        # owner_equipment = Equipment.where user_id: session[:user_id]
+        # arr_out = []
+        # owner_exchanges = owner_equipment.map do |equip| 
+        #     equip_exchanges = [...equip.exchanges]
+        #     arr_out << equip_exchanges
+        # end
+
     def create
         borrower = User.find_by id: params[:user_id]
         if borrower != nil
