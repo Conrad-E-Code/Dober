@@ -9,7 +9,7 @@ class EquipmentController < ApplicationController
         byebug
         avail_cat = AvailableCategory.find_by name: params[:category]
          if avail_cat != nil 
-             new_equip = Equipment.create!(equip_params.merge(user_id: session[:user_id])) 
+             new_equip = Equipment.create!(equip_params.merge(user_id: session[:user_id], is_available: true)) 
              ActiveCategory.create equipment_id: new_equip.id, available_category_id: avail_cat.id
              render json: new_equip, status: :created
          else 

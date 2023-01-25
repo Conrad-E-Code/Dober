@@ -12,6 +12,7 @@ import CategoryPage from './components/CategoryPage';
 import EquipDetails from './components/EquipDetails';
 import NewExchangeCard from './components/NewExchangeCard';
 import OwnerApproveForm from './components/OwnerApproveForm';
+import StartExchangeTimer from './components/StartExchangeTimer';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -58,6 +59,8 @@ function App() {
          path="/exchange/new/:id"></Route>
           <Route element={<OwnerApproveForm user={user}/>}
          path="/exchange/app/:id"></Route>
+          <Route element={<StartExchangeTimer user={user}/>}
+         path="/exchange/start/:id"></Route>
          <Route element={<CategoryPage navigate={navigate} />}
          path="/categories"></Route>
         

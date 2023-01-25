@@ -18,7 +18,7 @@ function OwnerApproveForm() {
     }
     function handleDeny() {
         const configObj = {method: "DELETE"}
-        fetch(`exchange/${id}`, configObj)
+        fetch(`/exchange/${id}`, configObj)
     }
     return(
         <div className="owner-approve-form">

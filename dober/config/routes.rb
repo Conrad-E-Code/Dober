@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post "/exchange/new", to: "exchanges#create"
   post "exchange/app/:id", to: "exchanges#owner_approve"
   post "exchange/start/:id", to: "exchanges#start_exc"
+  post "exchange/end/:id", to: "exchanges#end_exc"
   post 'password/forgot', to: 'passwords#forgot'
   post 'password/reset', to: 'passwords#reset'
 end

@@ -27,4 +27,14 @@ class UserMailer < ApplicationMailer
             mail(to: recip, subject: "Equipment Exchange Started!")
         end
     end
+    def end_timer_email(exchange)
+        @exchange = exchange
+        @recipients = []
+        @recipients << exchange.user.email
+        @recipients << exchange.equipment.user.email
+        @recipients.each do |recip|
+            mail(to: recip, subject: "Equipment Exchange Ended!")
+        end
+    end
+    # future stretch goal to require equipment owner approval prior to ending exchange similar to the check in process
 end
