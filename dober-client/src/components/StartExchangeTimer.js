@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
-
+import { useState } from "react"
 function StartExchangeTimer(props) {
+    const [errors, setErrors] = useState([])
     let {id} = useParams()
 
     const configObj = {
@@ -11,13 +12,26 @@ function StartExchangeTimer(props) {
 
     function handleStartTimer() {
         fetch(`/exchange/start/${id}`, configObj)
-        .then(r => r.json())
-        .then(startData => console.log(startData))
-        console.log("handleStartTimer")
+        .then(r => {
+            if (r.ok) {
+                r.json().then((data) => console.log(data))
+                // navigate("/")
+            } else {
+                r.json().then((err) => setErrors(err["errors"]))
+            }
+        })
     }
 
     function handleEndTimer() {
         fetch(`/exchange/end/${id}`, configObj)
+        .then(r => {
+            if (r.ok) {
+                r.json().then((data) => console.log(data))
+                // navigate("/")
+            } else {
+                r.json().then((err) => setErrors(err["errors"]))
+            }
+        })
     }
 
     return (
@@ -26,7 +40,9 @@ function StartExchangeTimer(props) {
             <button onClick={handleStartTimer}>START</button>
             <br/>
             <button onClick={handleEndTimer}>END</button>
-
+            {errors?      errors.map((err) => (
+            <p style={{color: "red", fontWeight: "bold" }}
+            key={err}>{err}</p>)): null} 
         </div>
     )
 

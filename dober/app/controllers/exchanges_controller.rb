@@ -81,7 +81,7 @@ class ExchangesController < ApplicationController
             UserMailer.end_timer_email(exchange).deliver_now
             render json: exchange, status: :ok
         else
-            render json: {errors:["Couldn't verify user login or Exchange already Ended or Exchange start timer not started"]}, status: 401
+            render json: {errors:["Couldn't End Exchange"]}, status: 401
         end
     end
     def destroy 
