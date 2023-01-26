@@ -24,8 +24,8 @@ function CatCard({cat}) {
         
     }
     return(
-        <div className="cat-card">
-            <p onClick={handleCatClick}>{`${cat.name}`}</p>
+        <div onClick={handleCatClick} className="cat-card">
+            <div className="cat-title"><p>{`${cat.name}`}</p></div>
             {show && Array.isArray(catEquip) ? 
                 catEquip.map((equip)=>{return (<EquipCard equip={equip}/>)}) :
                 console.log(show)}

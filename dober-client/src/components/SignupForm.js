@@ -50,38 +50,38 @@ function SignupForm({navigate}) {
                 placeholder="Username"
                  type="text" onChange={(e) => setNewUser(e.target.value)}></input>Enter Username</label>
                 <br/>
-                <label className="form-input"><input
+                <label className="form-input"><input 
                  placeholder="Password"
                   type="password" onChange={(e) => setNewPass(e.target.value)}></input>Enter New Password</label>
                 <br/>
-                <label className="form-input"><input
+                <label className="form-input"><input 
                  placeholder="Confirm Password"
                   type="password" onChange={(e) => setNewConfirm(e.target.value)}></input>Confirm Password</label>
                 <br/>
-                <label className="form-input">Email
-                    <input type="text" placeholder="email"
+                <label className="form-input">
+                    <input  type="text" placeholder="email"
                     onChange={(e) => setNewEmail(e.target.value)}>
-                    </input>
+                    </input>Email
                 </label>
                 <br/>
-                <label className="form-input">Coordinates
-                    <input type="text" placeholder="coordinates"
+                {/* <label className="form-input">Coordinates
+                    <input className="form-input" type="text" placeholder="coordinates"
                     onChange={(e) => setNewCoords(e.target.value)}>
                     </input>
                 </label>      
                 <br/>
-                <label className="form-input">Phone Number
+                <label  className="form-input">Phone Number
                     <input type="text" placeholder="phone-number"
                     onChange={(e) => setNewPhone(e.target.value)}>
                     </input>
-                </label>
+                </label> */}
                 <br/>
                 {errors.map((err) => (
                     <p style={{color: "red", fontWeight: "bold" }}
                     key={err}>{err}</p>
                 ))}
                 <br/>
-                 <button type="submit">Create Account!</button>
+                 <button className="submit-signup" type="submit">Create Account!</button>
             </form>
         </div>
     )

@@ -60,26 +60,26 @@ function App() {
          <Route element={ user ? <EquipDetails /> :<LoginForm /> }
          path="/equipment/:id"></Route>
          
-         <Route element={<CreateEquipmentForm navigate={navigate} />}
+         <Route element={user ?<CreateEquipmentForm navigate={navigate} />: <LoginForm />}
          path="/equipment/new"></Route>
          
-         <Route element={<NewExchangeCard user={user}/>}
+         <Route element={user ?<NewExchangeCard user={user}/>: <LoginForm />}
          path="/exchange/new/:id"></Route>
           
-          <Route element={<OwnerApproveForm user={user}/>}
+          <Route element={user ?<OwnerApproveForm user={user}/>: <LoginForm />}
          path="/exchange/app/:id"></Route>
 
-        <Route element={<StartExchangeTimer user={user}/>}
+        <Route element={user ? <StartExchangeTimer user={user}/> : <LoginForm />}
          path="/exchange/start/:id"></Route>
         
-        <Route element={<ExchangePage user={user}/>}
+        <Route element={user ? <ExchangePage user={user}/> : <LoginForm />}
          path="/exchanges"></Route>
 
 
          <Route element={<CategoryPage navigate={navigate} />}
          path="/categories"></Route>
 
-         <Route element={ user ? <Home/> :<LoginForm /> }
+         <Route element={ user ? <Home user={user}/> :<LoginForm /> }
          path="/"></Route>
 
       </Routes>

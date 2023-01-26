@@ -13,6 +13,7 @@ function EquipDetails() {
         .then(r => {
             if (r.ok) {
                 r.json().then((data) => {
+                    console.log(data)
                     setEquip(prevState => {
                         return {...prevState, ...data}
                     })
@@ -31,6 +32,7 @@ function EquipDetails() {
     return(
         <div className="equip-detail">
             <h1>{`${equip.name}`}</h1>
+            <h2>OWNER: {equip["user"] ? equip["user"]["username"] :null }</h2>
             <h2>TYPE: {`${equip.equip_type}`}</h2>
             <p>Model: {`${equip.model}`}</p>
             <p>Location: {`${equip.coordinates}`}</p>

@@ -21,12 +21,12 @@ class ExchangesController < ApplicationController
             equipment = Equipment.find_by id: params[:equipment_id]
             if equipment != nil && equipment.is_available
                 owner = User.find_by id: equipment.user_id
-                if owner != nil
+                if owner != nil && owner.id != borrower.id
                     exchange = Exchange.create! user_id: borrower.id, equipment_id: equipment.id
                     UserMailer.initiate_exchange_email(owner, borrower, equipment, exchange).deliver_now
                     render json:{message: "Sent"}, status: :ok
                 else
-                    render json: {errors: ["Owner Not Found"]}, status: 404
+                    render json: {errors: ["Owner Not Found OR Invalid Owner, You Can't Borrow Your Own Equipment"]}, status: 404
                 end
             else 
                 render json: {errors: ["Equipment Not Found OR Unavailable, someone else might be using this equipment"]}, status: 404
@@ -46,7 +46,7 @@ class ExchangesController < ApplicationController
             exchange.equipment.update is_available: false
             if exchange.owner_approved == true && exchange.started_at == nil
                 UserMailer.owner_approve_email(exchange).deliver_now
-                render json: {message: "Sent Approval to Client"}, status: 202
+                render json: exchange, status: 202
             else
                 render json: {errors: ["couldn't Approve or exchange is already started."]}, status: 401
             end
@@ -59,7 +59,7 @@ class ExchangesController < ApplicationController
         # string_time = d.strftime("%d%m%Y %H%M")
         exchange = Exchange.find_by id: params[:id]
         user = User.find_by id: session[:user_id]
-        if exchange.user == user && exchange.started_at == nil
+        if exchange.user_id == user.id && exchange.started_at == nil
             exchange.update started_at: d
             UserMailer.start_timer_email(exchange).deliver_now
             render json: exchange, status: :ok

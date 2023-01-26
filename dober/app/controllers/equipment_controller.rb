@@ -6,7 +6,6 @@ class EquipmentController < ApplicationController
             # create "AC" join table instance to link equipment to available category. 
             # could adapt this in future builds to allow users to create categories of their own as a paid feature. 
     def create
-        byebug
         avail_cat = AvailableCategory.find_by name: params[:category]
          if avail_cat != nil 
              new_equip = Equipment.create!(equip_params.merge(user_id: session[:user_id], is_available: true)) 

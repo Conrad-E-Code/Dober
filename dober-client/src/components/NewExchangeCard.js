@@ -30,7 +30,7 @@ function handleInitiateExchange(e) {
 
     return (
         <div className="new-exch-card">
-            BOOK IT!
+            Request To Borrow Equipment
             {`${id}`}
             <form onSubmit={(e) => handleInitiateExchange(e)}>
                 {/* <label> SECRET HIDDEN BACKEND FORM INPUT? HOW DOES THAT WORK???
@@ -42,7 +42,7 @@ function handleInitiateExchange(e) {
                 <p className="hidden-input"> SECRET BACKEND STUFF:</p>
                 <a href="https://www.linkedin.com/in/conrad-etherington/" className="hidden-input">Don't Click Here!</a>
                 <p className="hidden-input">USER: {user.id}</p>
-                <button type="submit">Send Request </button>
+                <button className="" type="submit">Send Request </button>
             </form>
             {errors?      errors.map((err) => (
                 <p style={{color: "red", fontWeight: "bold" }}

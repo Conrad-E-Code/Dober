@@ -10,14 +10,12 @@ function EquipCard({equip}) {
     return(
         <div onClick={handleShowEquip} className="equip-card">
             <ul className="equip-detail-list">
-                <li>
                     <p className="equip-detail-list-header"
                     >{`${equip.name}`}
                     </p>
-                </li>
-                <li>
                     <p className="equip-detail-list-subheader">{`${equip.equip_type}`}</p>
-                </li>
+                    <p>OWNER: {equip["user"]["username"]}</p>
+                
             </ul>
         </div>
     )
