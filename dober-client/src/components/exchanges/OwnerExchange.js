@@ -1,5 +1,7 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 function OwnerExchange({exchange}) {
+    let navigate = useNavigate()
     const [errors, setErrors] = useState([])
     const [isApproved, setIsApproved] = useState(false)
     function handleApprove(e, isApp, setIsApp) {
@@ -31,12 +33,20 @@ function OwnerExchange({exchange}) {
             }
         })
     }
+    function handleShowExc() {
+        navigate(`/exchanges/${exchange.id}`)
+
+    }
     function checkCompleted() {
         return exchange.owner_approved && (exchange.ended_at !== null)
     }
+function checkStarted() {
+    return exchange.started_at !== null
+}
+
     
     return(
-            <div className="owner-exchange-card" >
+            <div  className="owner-exchange-card">
                 <p className="exchange-detail">
                     Exchange Id: {`${exchange.id}`}
                     <br />
@@ -44,7 +54,7 @@ function OwnerExchange({exchange}) {
                 </p>
 
                 <p className="exchange-detail"> Status: {checkCompleted() ? "COMPLETE" 
-                : !isApproved ?  "Pending Your Approval": "Approved, waiting on borrower" } 
+                : exchange.owner_approved && !exchange.started_at?   "Pending Your Approval": checkStarted() ? "STARTED": exchange.owner_approved ? "APPROVED" : "Pending Your Approval" } 
 
                 {/* {(exchange.owner_approved === null) && (exchange.started_at === null) ?
                 <button className="exchange-button" onClick={handleApprove}>APPROVE</button>
@@ -55,7 +65,7 @@ function OwnerExchange({exchange}) {
                  : console.log(exchange.owner_approved)}
 
 
-                {(exchange.ended_at === null) ? <button className="exchange-button"onClick={handleDeny}>DENY/DELETE</button>
+                {(exchange.started_at === null) ? <button className="exchange-button"onClick={handleDeny}>DENY/DELETE</button>
                 : console.log(exchange.started_at) }
                 </p>
                 <p className="complete-details">
@@ -68,6 +78,7 @@ function OwnerExchange({exchange}) {
                     Net: {exchange.cost ? (exchange.cost * 0.96).toFixed(2) : null}
                     <br /> Taxes Calculation
                 </p>
+                <button onClick={handleShowExc} >SHOW DETAILS</button>
                 {errors ? errors.map((err) => ( <p style={{
                     color: "red",
                     fontWeight: "bold"

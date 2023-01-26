@@ -43,8 +43,6 @@ function UserExchange({exchange}) {
                     Exchange Time (hours): {exchange.time_elapsed? (exchange.time_elapsed / 60).toFixed(3) : null}
                     <br />
                     Your Cost: {exchange.cost ? exchange.cost.toFixed(2) : null}
-                    <br />
-                    Net: {exchange.cost ? (exchange.cost * 0.96).toFixed(2) : null}
                     <br /> Taxes Calculation
                     
                 </p> : null}

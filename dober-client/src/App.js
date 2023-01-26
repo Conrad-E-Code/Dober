@@ -7,13 +7,14 @@ import SignupForm from './components/SignupForm';
 import ForgotPasswordForm from './components/ForgotPasswordForm';
 import ResetPasswordForm from './components/ResetPasswordForm';
 import Home from './components/Home';
-import CreateEquipmentForm from './components/CreateEquipmentForm';
-import CategoryPage from './components/CategoryPage';
-import EquipDetails from './components/EquipDetails';
-import NewExchangeCard from './components/NewExchangeCard';
-import OwnerApproveForm from './components/OwnerApproveForm';
-import StartExchangeTimer from './components/StartExchangeTimer';
-import ExchangePage from './components/ExchangePage';
+import CreateEquipmentForm from './components/equipment/CreateEquipmentForm';
+import CategoryPage from './components/categories/CategoryPage';
+import EquipDetails from './components/equipment/EquipDetails';
+import NewExchangeCard from './components/exchanges/NewExchangeCard';
+import OwnerApproveForm from './components/exchanges/OwnerApproveForm';
+import StartExchangeTimer from './components/exchanges/StartExchangeTimer';
+import ExchangePage from './components/exchanges/ExchangePage';
+import ExchangeDetail from './components/exchanges/ExchangeDetail';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -59,6 +60,9 @@ function App() {
          
          <Route element={ user ? <EquipDetails /> :<LoginForm /> }
          path="/equipment/:id"></Route>
+
+         <Route element={user ? <ExchangeDetail /> : <LoginForm />}
+         path="/exchanges/:id"></Route>
          
          <Route element={user ?<CreateEquipmentForm navigate={navigate} />: <LoginForm />}
          path="/equipment/new"></Route>

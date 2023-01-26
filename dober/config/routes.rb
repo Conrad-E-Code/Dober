@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/exchanges", to: "exchanges#index"
+  get "/exchanges/:id", to: "exchanges#show" 
   delete "/exchange/:id", to: "exchanges#destroy"
   post "/exchange/new", to: "exchanges#create"
   post "exchange/app/:id", to: "exchanges#owner_approve"

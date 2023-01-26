@@ -7,6 +7,12 @@ class ExchangesController < ApplicationController
         arr_out << {owner_exchanges: user.exchanges}
         render json: arr_out, status: :ok
     end
+
+    def show
+        exchange = Exchange.find params[:id]
+        render json: exchange, status: :ok
+
+    end
             # WHAT NOT TO DO
         # owner_equipment = Equipment.where user_id: session[:user_id]
         # arr_out = []

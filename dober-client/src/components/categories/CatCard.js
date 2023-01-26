@@ -1,5 +1,5 @@
 import { useState } from "react"
-import EquipCard from "./EquipCard"
+import EquipCard from "../equipment/EquipCard"
 function CatCard({cat}) {
     const [show, setShow] = useState(false)
     const [catEquip, setCatEquip] = useState([])
