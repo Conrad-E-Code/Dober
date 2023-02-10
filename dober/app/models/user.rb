@@ -3,7 +3,8 @@ class User < ApplicationRecord
     validates :username, {uniqueness: true, presence: true}
     validates :email, {uniqueness: true, presence: true}
     has_many :equipment
-    has_many :exchanges
+    #has_many :exchanges
+    has_many :exchanges, through: :equipment
     #has_many :taskos, through: :equipment a user could be associated with tasks through their equipment postings.
     def generate_password_token!
         self.reset_password_token = generate_token
@@ -26,5 +27,4 @@ class User < ApplicationRecord
        def generate_token
         SecureRandom.hex(10)
        end
-
 end

@@ -21,7 +21,7 @@ const [errors, setErrors] = useState([])
             "description": newDescription,
             "hourly_rate":newHourly,
             "category" :newCat,
-            "type" :newType
+            "equip_type" :newType
         }
         const configObj = {
             method: "POST",

@@ -7,9 +7,14 @@ import SignupForm from './components/SignupForm';
 import ForgotPasswordForm from './components/ForgotPasswordForm';
 import ResetPasswordForm from './components/ResetPasswordForm';
 import Home from './components/Home';
-import CreateEquipmentForm from './components/CreateEquipmentForm';
-import CategoryPage from './components/CategoryPage';
-import EquipDetails from './components/EquipDetails';
+import CreateEquipmentForm from './components/equipment/CreateEquipmentForm';
+import CategoryPage from './components/categories/CategoryPage';
+import EquipDetails from './components/equipment/EquipDetails';
+import NewExchangeCard from './components/exchanges/NewExchangeCard';
+import OwnerApproveForm from './components/exchanges/OwnerApproveForm';
+import StartExchangeTimer from './components/exchanges/StartExchangeTimer';
+import ExchangePage from './components/exchanges/ExchangePage';
+import ExchangeDetail from './components/exchanges/ExchangeDetail';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -40,22 +45,45 @@ function App() {
     <div className="App">
       <NavBar handleLogout={handleLogout} user={user}/>
       <Routes>
+        
         <Route element={user ? console.log(user): <LoginForm
                  setUser={setUser}/> } path="/login"></Route>
+        
         <Route element={<SignupForm navigate={navigate}/>} 
           path="/signup"></Route>
+        
         <Route element={<ForgotPasswordForm navigate={navigate} />}
          path="/forgot"></Route>
+         
          <Route element={<ResetPasswordForm navigate={navigate} />}
          path="/reset"></Route>
+         
          <Route element={ user ? <EquipDetails /> :<LoginForm /> }
          path="/equipment/:id"></Route>
-         <Route element={<CreateEquipmentForm navigate={navigate} />}
+
+         <Route element={user ? <ExchangeDetail /> : <LoginForm />}
+         path="/exchanges/:id"></Route>
+         
+         <Route element={user ?<CreateEquipmentForm navigate={navigate} />: <LoginForm />}
          path="/equipment/new"></Route>
+         
+         <Route element={user ?<NewExchangeCard user={user}/>: <LoginForm />}
+         path="/exchange/new/:id"></Route>
+          
+          <Route element={user ?<OwnerApproveForm user={user}/>: <LoginForm />}
+         path="/exchange/app/:id"></Route>
+
+        <Route element={user ? <StartExchangeTimer user={user}/> : <LoginForm />}
+         path="/exchange/start/:id"></Route>
+        
+        <Route element={user ? <ExchangePage user={user}/> : <LoginForm />}
+         path="/exchanges"></Route>
+
+
          <Route element={<CategoryPage navigate={navigate} />}
          path="/categories"></Route>
-        
-         <Route element={ user ? <Home/> :<LoginForm /> }
+
+         <Route element={ user ? <Home user={user}/> :<LoginForm /> }
          path="/"></Route>
 
       </Routes>

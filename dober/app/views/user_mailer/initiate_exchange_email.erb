@@ -1,0 +1,6 @@
+<h1>Great News, <%= @owner.username %>!, <%= @borrower.username %> wants to borrow your <%= @equipment.name%></h1>
+
+<p>Please log in to this Link to accept the order!</p>
+Link: <%= @exchange.owner_allow_link%>
+<a href=<%= @exchange.owner_allow_link%>><%= @exchange.owner_allow_link%></a>
+<p> NEW! manage orders in the APP!</p>

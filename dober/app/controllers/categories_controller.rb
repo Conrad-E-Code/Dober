@@ -12,9 +12,9 @@ class CategoriesController < ApplicationController
     end
     def show 
         cat = AvailableCategory.find_by id: params[:id]
-        equip = cat.equipment
+        equip = cat.equipment.where is_available: true # only show equipment not currently rented out.
         if equip != []
-            render json: cat.equipment,status: :ok
+            render json: equip, status: :ok
         else
             render json: {errors:["No equipment found here, be the first to post!"]}, status: 404
         end

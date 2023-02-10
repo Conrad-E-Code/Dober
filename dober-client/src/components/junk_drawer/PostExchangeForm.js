@@ -14,7 +14,7 @@ function handleSubmit() {
         headers: {
             accepts: "application/json"
         },
-        body: 
+        body: JSON.stringify({"testkey":"testvalue"})
     }
     fetch(URL, configObj)
 }
@@ -29,7 +29,8 @@ function handleSubmit() {
                     <input type="file" onChange={onImageAdded}>
                     </input>
                 </label>
-            </form>          
+            </form>
+         
         </div>
     )
 }

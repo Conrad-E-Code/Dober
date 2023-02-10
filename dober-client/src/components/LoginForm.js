@@ -34,6 +34,7 @@ function LoginForm({ setUser}) {
             if (r.ok) {
                 r.json().then((user) => setUser(user))
                 navigate("/")
+                window.location.reload()
             } else {
                 r.json().then((err) => setErrors(err["errors"]))
             }
@@ -54,13 +55,13 @@ function LoginForm({ setUser}) {
                 <button type="submit">Login</button>
                 <br />
             </form>
-                <button onClick={() => navigate("/signup")}>Signup</button>
+                <button className='logout' onClick={() => navigate("/signup")}>Signup</button>
        {errors?      errors.map((err) => (
                 <p style={{color: "red", fontWeight: "bold" }}
                 key={err}>{err}</p>
             )): null}
             <br />
-            <Link to="/forgot">Forgot Password?</Link>
+            <Link className='nav-link' to="/forgot">Forgot Password?</Link>
         </div>
     )
 }

@@ -1,38 +1,247 @@
-.App {
+body {
   text-align: center;
+  margin: auto;
+  background-image: url("https://images.unsplash.com/photo-1534190239940-9ba8944ea261?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80");
+  height: 100vh;
+  background-attachment: fixed;
+}
+.login {
+  width: 480px;
+  background-color: rgba(249, 10, 10, 0.8);
+  margin: auto
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.home {
+  padding-top: 15px;
+  padding-bottom: 50px;
+  background-color: rgba(10, 249, 10, 0.8);
+  width: 400px;
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 5px;
+  align-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hidden-input {
+  color: transparent;
+}
+.hidden-input:hover {
+  color: cadetblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav {
+  background-color: firebrick;
+  border: solid;
+  font-weight: bold;
+  width: 98%;
+  border-radius: 3px;
+  height: 30px;
+  align-content: center;
+  padding-top: 7px;
+}
+
+
+.nav-link {
+  color: blue;
+  margin:20px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.nav-link:hover {
+  color: greenyellow;
+  cursor: pointer
+}
+.nav-link.active {
+  color: yellow
+
+}
+.nav-link.active:hover {
+  color: greenyellow;
+}
+.logout {
+  background-color: transparent;
+  border: none;
+  color: blue;
+  font-weight: bold;
+  font-size: 16px;
+}
+.logout:hover {
+color: greenyellow;
+}
+
+.avail-cats {
+  border: solid;
+  border-color: blue;
+  background-color: rgba(10, 249, 10, 0.8);
+  border-width: 3px;
+  border-radius: 3px;
+  padding: 20px;
+}
+.cat-title{
+  width: 100%;
+}
+.cat-card {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 20px;
+  background-color:blanchedalmond;
+  border: solid;
+  border-color: red;
+  border-width: 2px;
+  border-radius: 1px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: blue
+}
+.cat-card:hover {
+  background-color: gold;
+}
+.equip-detail {
+  margin: auto;
+  margin-top: 100px;
+  align-self: center;
+  background-color: rgba(249, 249, 249, 0.8);
+  width: 485px;
+  
+  padding: 20px;
+  
+}
+.equip-detail-list-header {
+  font-weight: bolder;
+  text-decoration: underline;
+}
+.equip-detail-list-subheader {
+  font-weight: bold;
+}
+.equip-card {
+  margin: 14px;
+  border: solid;
+  background-color:aquamarine;
+  border-color: darkgoldenrod;
+  width: 45%;
+}
+.new-exch-card{
+  width: 480px;
+  background-color: rgba(249, 249, 249, 0.8);
+  margin: auto;
+  font-weight:bold;
+  color:darkgreen;
+
+}
+.exchange-page{
+  width: 95%;
+  padding: 10px;
+  margin: 10px;
+  background-color: transparent;
+}
+.exchange-div{
+  padding: 10px;
+  margin: 10px;
+  width: 85%;
+  background-color: aqua;
+  border: solid;
+}
+.exchange-header {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.exchange-detail {
+  font-weight: bold;
+
+}
+.exchange-button {
+  background-color: burlywood;
 }
 
-.App-link {
-  color: #61dafb;
+.exchange-card {
+  padding: 10px;
+  margin: 10px;
+  background-color: aliceblue;
+  border: solid;
+  border-width: 3px;
+  border-radius: 3px;
+  padding: 5px;
+}
+.owner-exchange-div{
+  padding: 10px;
+  margin: 10px;
+  width: 85%;
+  background-color:aqua;
+  border: solid;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.new-equip-form {
+  width: 480px;
+  background-color: rgba(249, 249, 249, 0.8);
+  margin: auto;
+  font-weight:bold;
+  color:darkgreen;
+  padding:20px;
+  border-radius: 3px;
+  text-align: left;
+}
+
+.owner-exchange-card {
+  padding: 10px;
+  margin: 10px;
+  background-color: aliceblue;
+  border: solid;
+  border-width: 3px;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+
+.signup {
+  font-weight: bold;
+  align-content: left;
+  margin:auto;
+  background-color: aliceblue;
+  border: solid;
+  border-color: cornflowerblue;
+  border-width: 4px;
+  border-radius: 3px;
+  width: 455px;
+}
+.signup-form{
+  text-align: left;}
+.form-input {
+margin-left: 15%; 
+}
+.signup-form label {
+  color: rgb(56, 73, 32);
+}
+.submit-signup {
+  font-weight: bold;
+  background-color:orchid;
+  margin-left: 38%;
+  border-radius: 30px;
+  border-color: transparent;
+}
+.submit-signup:hover {
+  background-color: chartreuse;
+  border-color: orchid;
+  border-radius: 30px;
+
+}
+.forgot-password{
+  background-color: aqua;
+  background-color: rgba(249, 10, 10, 0.8);
+  width: 480px;
+  margin: auto;
+  padding: 20px;
+}
+.reset-form {
+  background-color: aqua;
+  background-color: rgba(10, 249, 10, 0.8);
+  width: 480px;
+  margin: auto;
+  padding: 20px;
 }

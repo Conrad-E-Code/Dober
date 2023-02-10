@@ -1,5 +1,5 @@
 import { useState } from "react"
-import EquipCard from "./EquipCard"
+import EquipCard from "../equipment/EquipCard"
 function CatCard({cat}) {
     const [show, setShow] = useState(false)
     const [catEquip, setCatEquip] = useState([])
@@ -24,8 +24,8 @@ function CatCard({cat}) {
         
     }
     return(
-        <div className="cat-card">
-            <h3 onClick={handleCatClick}>{`${cat.name}`}</h3>
+        <div onClick={handleCatClick} className="cat-card">
+            <div className="cat-title"><p>{`${cat.name}`}</p></div>
             {show && Array.isArray(catEquip) ? 
                 catEquip.map((equip)=>{return (<EquipCard equip={equip}/>)}) :
                 console.log(show)}

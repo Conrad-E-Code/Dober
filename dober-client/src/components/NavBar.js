@@ -5,8 +5,8 @@ function NavBar({handleLogout, user}) {
         <nav className="nav">
             {user ? <button onClick={handleLogout}
              className='logout'>Logout</button> :null}
-             {user ? <NavLink exact to="/">Home</NavLink> : console.log(user)}
-             {user ? <NavLink exact to="/categories">Categories</NavLink> : console.log(user)}
+             {<NavLink className="nav-link" exact to="/">Home</NavLink>}
+             {<NavLink className="nav-link"exact to="/categories">Categories</NavLink>}
 
         </nav>
     )
