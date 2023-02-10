@@ -13,13 +13,6 @@ class ExchangesController < ApplicationController
         render json: exchange, status: :ok
 
     end
-            # WHAT NOT TO DO
-        # owner_equipment = Equipment.where user_id: session[:user_id]
-        # arr_out = []
-        # owner_exchanges = owner_equipment.map do |equip| 
-        #     equip_exchanges = [...equip.exchanges]
-        #     arr_out << equip_exchanges
-        # end
 
     def create
         borrower = User.find_by id: params[:user_id]
@@ -78,7 +71,7 @@ class ExchangesController < ApplicationController
         # string_time = d.strftime("%d%m%Y %H%M")
         exchange = Exchange.find_by id: params[:id]
         user = User.find_by id: session[:user_id]
-        if exchange.user == user && exchange.ended_at == nil
+        if exchange.user == user && exchange.ended_at == nil && exchange.started_at != nil
             time_calc = TimeDifference.between(exchange.started_at, d).in_minutes
             cost_per_minute = exchange.equipment.hourly_rate / 60
             cost_calc = cost_per_minute * time_calc
@@ -93,6 +86,7 @@ class ExchangesController < ApplicationController
     def destroy 
         exchange = Exchange.find params[:id]
         if exchange.started_at == nil
+            #BUG IDENTIFIED MAKE EQUIP AVAILABLE AGAIN find assoc equip and update is_Available  to true
             exchange.destroy
             head :no_content
         else
@@ -100,3 +94,4 @@ class ExchangesController < ApplicationController
         end
     end
 end
+
