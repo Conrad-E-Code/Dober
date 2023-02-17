@@ -42,8 +42,8 @@ function EquipDetails() {
                     key={err}>{err}</p>
                 ))}
                 <button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>
-    TASKS RENDER A LIST OF ASSOCIATED TASKOS!!!!
-    TASKOS.where equip_id: params:id
+    {/* TASKS RENDER A LIST OF ASSOCIATED TASKOS!!!!
+    TASKOS.where equip_id: params:id */}
         </div>
     )
 }

@@ -11,6 +11,7 @@ const [newCat, setNewCat] = useState("")
 const [newType, setNewType] = useState("")
 const [errors, setErrors] = useState([])
 
+
     function handleNewEquipment(e) {
 
         e.preventDefault()

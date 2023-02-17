@@ -1,10 +1,14 @@
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 function Home({user}) {
+    let navigate = useNavigate()
     function handleTest() {
-        fetch("/equipment")
-        .then(r => r.json())
-        .then(data => console.log(data))
+        // console.log(user)
+        navigate(`/${user.id}/equipment`)
+        // fetch("/equipment")
+        // .then(r => r.json())
+        // .then(data => console.log(data))
     }
     return(
         <div className="home">
@@ -18,5 +22,4 @@ function Home({user}) {
         </div>
     )
 }
-
 export default Home

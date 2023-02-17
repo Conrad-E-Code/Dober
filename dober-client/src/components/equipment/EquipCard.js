@@ -15,7 +15,6 @@ function EquipCard({equip}) {
                     </p>
                     <p className="equip-detail-list-subheader">{`${equip.equip_type}`}</p>
                     <p>OWNER: {equip["user"]["username"]}</p>
-                
             </ul>
         </div>
     )

@@ -4,5 +4,6 @@ class Equipment < ApplicationRecord
     has_many :taskos
     has_many :active_categories
     has_many :exchanges
-    #front end will need a form for creating equipment.
+    has_many :equip_images
+    
 end

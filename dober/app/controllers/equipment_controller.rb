@@ -1,5 +1,4 @@
 class EquipmentController < ApplicationController
-
             #def create behaviors
             #checking for available category with matching name  
             # merging strong_params with session to get the user_id from session and still raise exceptions for 422
@@ -15,6 +14,14 @@ class EquipmentController < ApplicationController
              render json: {errors:["Please choose a valid category"]}, status: 422
          end
     end
+    def image_upload
+        equip = Equipment.find params[:id]
+        file = params[:image]
+        img = Cloudinary::Uploader.upload file, folder: "equip-images", public_id: equip.name, unique_filename: false, overwrite: true
+        img_url = img["url"]
+        equip.update image: img_url 
+        render json: {equip: equip}
+    end
 
     def index
         user = get_user
@@ -26,8 +33,6 @@ class EquipmentController < ApplicationController
         equip = Equipment.find params[:id]
         render json: equip, status: :ok
     end
-
-
 private
     def equip_params
         params.permit :name, :model, :year, :description, :hourly_rate, :equip_type
