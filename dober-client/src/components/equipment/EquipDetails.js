@@ -3,7 +3,7 @@ import { useState, useEffect} from "react"
 
 
 
-function EquipDetails() {
+function EquipDetails({user}) {
     let navigate = useNavigate()
     const [errors, setErrors] = useState([])
     const [equip, setEquip] = useState({})
@@ -41,9 +41,7 @@ function EquipDetails() {
                     <p style={{color: "red", fontWeight: "bold" }}
                     key={err}>{err}</p>
                 ))}
-                <button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>
-    {/* TASKS RENDER A LIST OF ASSOCIATED TASKOS!!!!
-    TASKOS.where equip_id: params:id */}
+                {/* { ? <h1>test</h1> :<button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>} */}
         </div>
     )
 }

@@ -1,11 +1,19 @@
 class ExchangesController < ApplicationController
     def index
         user = User.find session[:user_id]
-        arr_out = []
         exchanges = Exchange.where user_id: user.id
-        arr_out << {exchanges: exchanges}
-        arr_out << {owner_exchanges: user.exchanges}
-        render json: arr_out, status: :ok
+        render json: exchanges, each_serializer: ExchangeSerializer, status: :ok
+    end
+    
+    def index_owner
+        user = User.find session[:user_id]
+        equip = user.equipment
+        exchanges = []
+        equip.each do |equip|
+            exchanges << equip.exchanges
+        end
+        # exchanges = Exchange.where user_id: user.id
+        render json: exchanges, status: :ok
     end
 
     def show

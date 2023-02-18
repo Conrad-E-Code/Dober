@@ -245,3 +245,11 @@ margin-left: 15%;
   margin: auto;
   padding: 20px;
 }
+.user-equip-card {
+  border: solid;
+  background-color: aqua;
+  width: 480px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

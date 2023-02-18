@@ -1,6 +1,6 @@
 import { useState } from "react"
 import EquipCard from "../equipment/EquipCard"
-function CatCard({cat}) {
+function CatCard({cat, user}) {
     const [show, setShow] = useState(false)
     const [catEquip, setCatEquip] = useState([])
     const [errors, setErrors] = useState([])

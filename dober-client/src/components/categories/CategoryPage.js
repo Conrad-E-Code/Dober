@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import CatCard from "./CatCard"
 
-function CategoryPage(props) {
+function CategoryPage({user}) {
     const [cats, setCats] = useState([])
     const [errors, setErrors] = useState([])
     useEffect(() => {
@@ -20,7 +20,7 @@ function CategoryPage(props) {
     
      const renderCats = cats.map((cat)=>{
         return(
-            <CatCard cat={cat}></CatCard>)
+            <CatCard user={user} cat={cat}></CatCard>)
         })
 
     return(

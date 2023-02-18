@@ -66,7 +66,7 @@ function checkStarted() {
 
 
                 {(exchange.started_at === null) ? <button className="exchange-button"onClick={handleDeny}>DENY/DELETE</button>
-                : console.log(exchange.started_at) }
+                : console.log(exchange) }
                 </p>
                 <p className="complete-details">
                     Exchange Time (hours): {exchange.time_elapsed? (exchange.time_elapsed / 60).toFixed(3) : null}

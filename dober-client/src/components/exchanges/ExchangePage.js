@@ -4,14 +4,24 @@ import UserExchange from "./UserExchange"
 import OwnerExchange from "./OwnerExchange"
 
 function ExchangePage({user}) {
-    const [exchanges, setExchanges] = useState([])
+    const [userExchanges, setUserExchanges] = useState([])
+    const [ownerExchanges, setOwnerExchanges] = useState([])
 
-// fetch exchanges from server
+// fetch user exchanges from server
 useEffect(()=>{
     fetch("/exchanges")
     .then((r)=> r.json())
     .then((data) => { 
-        setExchanges(data)
+        setUserExchanges(data)
+                    console.log(data)})
+},[])
+
+//fetch owner exchanges
+useEffect(()=>{
+    fetch(`${user.id}/exchanges`)
+    .then((r)=> r.json())
+    .then((data) => { 
+        setOwnerExchanges(data)
                     console.log(data)})
 },[])
 
@@ -19,15 +29,15 @@ useEffect(()=>{
 //     return( <UserExchange exchange={exchange} />)
 // })
 
-function userExchanges() {
+function renderUserExchanges() {
     // if (Array.isArray(exchanges[0]["exchanges"]))
-    if (!exchanges[0]) return <h1>Loading</h1>
-    return (exchanges[0]["exchanges"].map((exchange) => {return( <UserExchange  setExchanges={setExchanges} exchange={exchange} />)}))
+    if (!userExchanges) return <h1>Loading</h1>
+    return (userExchanges.map((exchange) => {return( <UserExchange  setUserExchanges={setUserExchanges} exchange={exchange} />)}))
 }
-function ownerExchanges() {
+function renderOwnerExchanges() {
     // if (Array.isArray(exchanges[0]["exchanges"]))
-    if (!exchanges[1]) return <h1>Loading</h1>
-    return (exchanges[1]["owner_exchanges"].map((exchange) => {return( <OwnerExchange  setExchanges={setExchanges} exchange={exchange} />)}))
+    if (!ownerExchanges) return <h1>Loading</h1>
+    return (ownerExchanges.map((exchange) => {return( <OwnerExchange  setOwnerExchanges={setOwnerExchanges} exchange={exchange} />)}))
 }
 
 // const ownerExchanges = exchanges[1]["owner_exchanges"].map((exchange) => {
@@ -39,11 +49,11 @@ function ownerExchanges() {
         <div className="exchange-page">
             <div className="exchange-div">
             <p className="exchange-header">YOUR EXCHANGES AS A USER</p>
-                    {userExchanges()}
+                    {renderUserExchanges()}
             </div>
             <div className="owner-exchange-div">
                     <p className="exchange-header">EXCHANGES FOR EQUIPMENT YOU OWN</p>
-                    {ownerExchanges()}
+                    {renderOwnerExchanges()}
             </div>
         </div>
     )

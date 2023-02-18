@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/:id/exchanges", to: "exchanges#index_owner"
   get "/exchanges", to: "exchanges#index"
   get "/exchanges/:id", to: "exchanges#show" 
   delete "/exchange/:id", to: "exchanges#destroy"

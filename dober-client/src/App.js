@@ -15,6 +15,7 @@ import OwnerApproveForm from './components/exchanges/OwnerApproveForm';
 import StartExchangeTimer from './components/exchanges/StartExchangeTimer';
 import ExchangePage from './components/exchanges/ExchangePage';
 import ExchangeDetail from './components/exchanges/ExchangeDetail';
+import UserEquipPage from './components/equipment/UserEquipPage';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -45,6 +46,8 @@ function App() {
     <div className="App">
       <NavBar handleLogout={handleLogout} user={user}/>
       <Routes>
+
+        <Route element={<UserEquipPage user={user} />} path="/:user_id/equipment"></Route>
         
         <Route element={user ? console.log(user): <LoginForm
                  setUser={setUser}/> } path="/login"></Route>
@@ -58,7 +61,7 @@ function App() {
          <Route element={<ResetPasswordForm navigate={navigate} />}
          path="/reset"></Route>
          
-         <Route element={ user ? <EquipDetails /> :<LoginForm /> }
+         <Route element={ user ? <EquipDetails user={user} /> :<LoginForm /> }
          path="/equipment/:id"></Route>
 
          <Route element={user ? <ExchangeDetail /> : <LoginForm />}
@@ -80,7 +83,7 @@ function App() {
          path="/exchanges"></Route>
 
 
-         <Route element={<CategoryPage navigate={navigate} />}
+         <Route element={<CategoryPage user={user} navigate={navigate} />}
          path="/categories"></Route>
 
          <Route element={ user ? <Home user={user}/> :<LoginForm /> }
