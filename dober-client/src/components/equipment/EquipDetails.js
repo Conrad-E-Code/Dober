@@ -41,7 +41,7 @@ function EquipDetails({user}) {
                     <p style={{color: "red", fontWeight: "bold" }}
                     key={err}>{err}</p>
                 ))}
-                {/* { ? <h1>test</h1> :<button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>} */}
+                {false ? <h1>test</h1> :<button onClick={() => navigate(`/exchange/new/${equip.id}`)}>Borrow!</button>}
         </div>
     )
 }

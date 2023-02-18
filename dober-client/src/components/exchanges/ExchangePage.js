@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { useState } from "react"
 import UserExchange from "./UserExchange"
 import OwnerExchange from "./OwnerExchange"
+import EquipCard from "../equipment/EquipCard"
+import UserEquipCard from "../equipment/UserEquipCard"
 
 function ExchangePage({user}) {
     const [userExchanges, setUserExchanges] = useState([])
@@ -37,7 +39,7 @@ function renderUserExchanges() {
 function renderOwnerExchanges() {
     // if (Array.isArray(exchanges[0]["exchanges"]))
     if (!ownerExchanges) return <h1>Loading</h1>
-    return (ownerExchanges.map((exchange) => {return( <OwnerExchange  setOwnerExchanges={setOwnerExchanges} exchange={exchange} />)}))
+    return (ownerExchanges.map((exchange) => {return( <UserEquipCard  setOwnerExchanges={setOwnerExchanges} equip={exchange} />)}))
 }
 
 // const ownerExchanges = exchanges[1]["owner_exchanges"].map((exchange) => {

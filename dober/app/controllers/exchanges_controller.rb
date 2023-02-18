@@ -8,11 +8,14 @@ class ExchangesController < ApplicationController
     def index_owner
         user = User.find session[:user_id]
         equip = user.equipment
-        exchanges = []
-        equip.each do |equip|
-            exchanges << equip.exchanges
-        end
         # exchanges = Exchange.where user_id: user.id
+        # refactor to show equipmentcard in here and then you click equipcard to see exchanges for that equipment.
+         render json: equip, status: :ok
+    end
+
+    def index_equip
+        equip = Equipment.find params[:id]
+        exchanges = equip.exchanges
         render json: exchanges, status: :ok
     end
 
@@ -29,9 +32,15 @@ class ExchangesController < ApplicationController
             if equipment != nil && equipment.is_available
                 owner = User.find_by id: equipment.user_id
                 if owner != nil && owner.id != borrower.id
+                    check = Exchange.where user_id: borrower.id, equipment_id: equipment.id, started_at: nil
+                    byebug
+                    if check.ids == []
                     exchange = Exchange.create! user_id: borrower.id, equipment_id: equipment.id
                     UserMailer.initiate_exchange_email(owner, borrower, equipment, exchange).deliver_now
                     render json:{message: "Sent"}, status: :ok
+                    else
+                        render json: {errors: ["YOU MUST WAIT FOR OWNER APPROVAL ON YOUR PREVIOUS REQUEST"]}, status: 401
+                    end
                 else
                     render json: {errors: ["Owner Not Found OR Invalid Owner, You Can't Borrow Your Own Equipment"]}, status: 404
                 end

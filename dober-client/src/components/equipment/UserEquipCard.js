@@ -1,5 +1,25 @@
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 function UserEquipCard({equip}) {
+    const [errors, setErrors] = useState([])
+    let navigate = useNavigate()
     console.log(equip)
+    function onViewExchanges() {
+        // navigate(`/equipment/${equip.id}/exchanges`)
+        fetch(`equipment/${equip.id}/exchanges`)
+        .then(r => {
+            if (r.ok) {
+                r.json().then((data) => {
+                    console.log(data)
+                })
+                
+            } else {
+                r.json().then((err) => setErrors(err["errors"]))
+            }
+        })
+        console.log("YO")
+        // where is this gonna take us?
+    }
 return (
     <div className="user-equip-card">
         <table>
@@ -23,6 +43,9 @@ return (
                 <th>Hourly Rate:</th>
                 <td>
                     ${equip.hourly_rate}/hour
+                </td>
+                <td>
+                <button onClick={onViewExchanges}>View Exchanges</button>
                 </td>
             </tr>
             <tr>
