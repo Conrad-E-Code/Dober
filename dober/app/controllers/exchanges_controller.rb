@@ -39,6 +39,7 @@ class ExchangesController < ApplicationController
                     UserMailer.initiate_exchange_email(owner, borrower, equipment, exchange).deliver_now
                     render json:{message: "Sent"}, status: :ok
                     else
+                        UserMailer.initiate_exchange_email_resend(owner, borrower, equipment, check).deliver_now
                         render json: {errors: ["YOU MUST WAIT FOR OWNER APPROVAL ON YOUR PREVIOUS REQUEST"]}, status: 401
                     end
                 else

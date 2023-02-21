@@ -14,6 +14,13 @@ class UserMailer < ApplicationMailer
         @equipment = equipment
         mail(to: @owner.email, subject: 'test URGENT: someone wants to borrow your equipment')
     end
+    def initiate_exchange_email_resend(owner, borrower, equipment, exchange)
+        @exchange= exchange
+        @owner = owner
+        @borrower = borrower
+        @equipment = equipment
+        mail(to: @owner.email, subject: 'TEST RESEND')
+    end
     def owner_approve_email(exchange)
         @exchange = exchange
         mail(to: @exchange.user.email, subject: "Equipment Ready For Pickup")
