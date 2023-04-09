@@ -16,6 +16,7 @@ import StartExchangeTimer from './components/exchanges/StartExchangeTimer';
 import ExchangePage from './components/exchanges/ExchangePage';
 import ExchangeDetail from './components/exchanges/ExchangeDetail';
 import UserEquipPage from './components/equipment/UserEquipPage';
+import MapPage from './components/MapPage';
 function App() {
   let navigate = useNavigate()
   const [user, setUser] = useState("")
@@ -85,6 +86,8 @@ function App() {
 
          <Route element={<CategoryPage user={user} navigate={navigate} />}
          path="/categories"></Route>
+         <Route element={<MapPage/>} path="/map" >
+         </Route>
 
          <Route element={ user ? <Home user={user}/> :<LoginForm /> }
          path="/"></Route>
