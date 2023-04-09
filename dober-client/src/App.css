@@ -109,7 +109,6 @@ color: greenyellow;
   align-self: center;
   background-color: rgba(249, 249, 249, 0.8);
   width: 485px;
-  
   padding: 20px;
   
 }
@@ -133,7 +132,6 @@ color: greenyellow;
   margin: auto;
   font-weight:bold;
   color:darkgreen;
-
 }
 .exchange-page{
   width: 95%;
@@ -154,12 +152,10 @@ color: greenyellow;
 }
 .exchange-detail {
   font-weight: bold;
-
 }
 .exchange-button {
   background-color: burlywood;
 }
-
 .exchange-card {
   padding: 10px;
   margin: 10px;
@@ -176,7 +172,6 @@ color: greenyellow;
   background-color:aqua;
   border: solid;
 }
-
 .new-equip-form {
   width: 480px;
   background-color: rgba(249, 249, 249, 0.8);
@@ -187,7 +182,6 @@ color: greenyellow;
   border-radius: 3px;
   text-align: left;
 }
-
 .owner-exchange-card {
   padding: 10px;
   margin: 10px;
@@ -197,8 +191,6 @@ color: greenyellow;
   border-radius: 3px;
   padding: 5px;
 }
-
-
 .signup {
   font-weight: bold;
   align-content: left;
@@ -229,7 +221,6 @@ margin-left: 15%;
   background-color: chartreuse;
   border-color: orchid;
   border-radius: 30px;
-
 }
 .forgot-password{
   background-color: aqua;
