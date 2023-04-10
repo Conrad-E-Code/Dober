@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post "exchange/end/:id", to: "exchanges#end_exc"
   post 'password/forgot', to: 'passwords#forgot'
   post 'password/reset', to: 'passwords#reset'
-  post '/paynow', to: ''
+  post '/paynow', to: 'payment#create'
 end
 # need cloudinary gem
 #maybe need http gem
