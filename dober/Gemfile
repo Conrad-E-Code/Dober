@@ -43,6 +43,7 @@ gem "rack-cors"
 
 
 gem "active_model_serializers", "~> 0.10.13" # serializer gem
+gem 'stripe'
 
 gem 'time_difference'
 group :development, :test do

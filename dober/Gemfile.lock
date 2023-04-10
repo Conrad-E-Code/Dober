@@ -178,6 +178,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    stripe (8.5.0)
     thor (1.2.1)
     time_difference (0.5.0)
       activesupport
@@ -207,6 +208,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
+  stripe
   time_difference
   tzinfo-data
 
