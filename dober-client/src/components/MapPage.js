@@ -1,6 +1,7 @@
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 import { useMemo } from "react";
 import { useState } from 'react';
+import AutoPayEnroll from './AutoPayEnroll';
 
 function MapPage() {
 const [lng, setLng] = useState(null)
@@ -50,6 +51,7 @@ const [status, setStatus] = useState(null)
         </div>
         <Map status={status} lat={lat} lng={lng} >
         </Map>
+        <AutoPayEnroll />
         </>
     )
 }

@@ -6,6 +6,10 @@ body {
   height: 100vh;
   background-attachment: fixed;
 }
+.card-element {
+  background-color:rgba(1, 10, 1, 0.2);
+  border: solid
+}
 .login {
   width: 480px;
   background-color: rgba(249, 10, 10, 0.8);
